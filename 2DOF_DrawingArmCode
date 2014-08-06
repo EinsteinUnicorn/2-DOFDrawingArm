@@ -1,0 +1,25 @@
+#include <Servo.h>
+
+Servo myservo1;  // create servo object to control a servo
+Servo myservo2;
+
+int potpin1 = 0;  // analog pin used to connect the potentiometer
+int potpin2 = 1;
+int val;    // variable to read the value from the analog pin
+
+void setup()
+{
+  myservo1.attach(3);  // attaches the servo on pin3
+  myservo2.attach(4);  // attaches the servo on pin 4
+}
+
+void loop()
+{
+  val = analogRead(potpin1);            // reads the value of the pot
+  val = map(val, 0, 1023, 0, 179);     // scale it between 0 and 180
+  myservo1.write(val);                  // sets servo according to the scaled value
+  val = analogRead(potpin2);            // reads the value of the pot
+  val = map(val, 0, 1023, 0, 179);     // scale it between 0 and 180
+  myservo2.write(val);                  // sets servo according to the scaled value
+  delay(15);                           // waits for the servo to get there
+}
